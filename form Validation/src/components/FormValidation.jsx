@@ -18,7 +18,16 @@ const FormValidation = () => {
       setValues({ ...values, [inputs.target.name]: inputs.target.checked });
       return;
     }
-    setValues({ ...values, [inputs.target.name]: inputs.target.value });
+
+    //* both do someting not diffrent
+    // setValues({ ...values, [inputs.target.name]: inputs.target.value });
+
+    setValues((prev) => ({
+      ...prev,
+      [inputs.target.name]: inputs.target.value,
+    }));
+
+    //* both do someting not diffrent
   };
 
   const handleSubmit = (form) => {
