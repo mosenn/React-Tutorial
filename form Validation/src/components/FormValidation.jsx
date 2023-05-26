@@ -13,18 +13,22 @@ const FormValidation = () => {
   const [error, setError] = useState({});
   const [handelGeneratePassword, setHandelGeneratePassword] = useState("");
   const [suceess, setSuccess] = useState(false);
+  
   const handleOnchange = (inputs) => {
+    const err = validate(values);
+    setError(err);
+    console.log(Object.keys(err).length);
+    //* both do someting not diffrent
+    setSuccess(Object.keys(err).length === 0 && true);
     if (inputs.target.name === "checkRule") {
       setValues({ ...values, [inputs.target.name]: inputs.target.checked });
       return;
     }
-
     //* both do someting not diffrent
     // setValues({ ...values, [inputs.target.name]: inputs.target.value });
-
     setValues((prev) => ({
       ...prev,
-      [inputs.target.name]: inputs.target.value,
+      [inputs.target.name]: inputs.target.value.trim(),
     }));
 
     //* both do someting not diffrent
