@@ -1,26 +1,47 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../../context/Context";
+import { logoutUSer, profileUser } from "../../api/user";
 
 const Header = () => {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
+  const { setUserInfo, userInfo } = useGlobalContext();
+  //*takeUser function call api profileUser() then setuser to globalState
+  const takeUser = async () => {
+    const user = await profileUser();
+    console.log("User Login in Header", user);
+    setUserInfo(user.data);
+  };
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
-    setUser(user);
+    // * call takeUser Function
+    takeUser();
+    // const user = JSON.parse(localStorage.getItem("user"));
+    // console.log(user);
+    // setUser(user);
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem("user");
-    console.log("logout");
+  const logout = async () => {
+    //* call api logout function
+    const user = await logoutUSer();
+    // localStorage.removeItem("user");
+    console.log(user);
     window.location.reload();
   };
   return (
     <div>
       <nav>
-        {user?.username ? (
+        {userInfo?.username ? (
           <ul>
+            <li>
+              <img
+                style={{ width: "50px", borderRadius: "100%", height: "50px" }}
+                src={userInfo?.pic}
+                alt={userInfo?.username}
+              />
+            </li>
             <li>logo</li>
-            <li>{user.username}</li>
+
+            <li>{userInfo?.username}</li>
             <li onClick={logout}>logout</li>
           </ul>
         ) : (

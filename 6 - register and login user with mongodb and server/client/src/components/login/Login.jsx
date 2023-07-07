@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/user";
+import { useGlobalContext } from "../../context/Context";
 
 const Login = () => {
+  const { setUserInfo, userInfo } = useGlobalContext();
   const navigate = useNavigate();
 
   const [toast, setToast] = useState(false);
@@ -16,14 +18,16 @@ const Login = () => {
       [inputs.target.name]: inputs.target.value,
     });
   };
-  const handleSubmitRegister = async (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
     const user = await loginUser(loginValue);
     console.log("User data in Submit form", user);
-    if (user?.status === 200 && user?.data) {
-      //*Todo reidrect to login page
+    if (user?.status === 200) {
+      //*Todo reidrect to Home page
       setToast(true);
-      localStorage.setItem("user", JSON.stringify(user?.data));
+      //* use globalState
+      // localStorage.setItem("user", JSON.stringify(user?.data));
+      setUserInfo(user?.data);
       setTimeout(() => {
         navigate("/");
       }, 3000);
@@ -46,7 +50,7 @@ const Login = () => {
       )}
       <form
         action=""
-        onSubmit={handleSubmitRegister}
+        onSubmit={handleSubmitLogin}
         style={{ display: "flex", flexDirection: "column" }}
       >
         <label htmlFor="username">username</label>
@@ -55,7 +59,7 @@ const Login = () => {
           name="username"
           id="username"
           onChange={handleOnchangeLogin}
-          value={loginValue.username}
+          value={loginValue?.username}
         />
         <label htmlFor="password">password</label>
         <input
@@ -63,7 +67,7 @@ const Login = () => {
           name="password"
           id="password"
           onChange={handleOnchangeLogin}
-          value={loginValue.password}
+          value={loginValue?.password}
         />
         <button
           type="submit"
