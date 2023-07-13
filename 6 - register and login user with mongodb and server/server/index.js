@@ -25,7 +25,7 @@ app.use("/home", async (req, res) => {
 
 app.use("/", require("./routes/user"));
 app.use('/' , (req , res)=> {
-  res.status(200).json(<h1>Server Is Run </h1>)
+ return res.status(200).send(<h1>Server Is Run </h1>)
 })
 //*listen
 const port = process.env.PORT || 3010;
