@@ -24,8 +24,8 @@ const Header = () => {
     //* call api logout function
     const user = await logoutUSer();
     // localStorage.removeItem("user");
-    console.log(user);
-    window.location.reload();
+    console.log('this user is logout' , user);
+    // window.location.reload();
   };
   return (
     <div>
