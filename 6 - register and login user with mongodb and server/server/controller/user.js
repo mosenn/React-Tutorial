@@ -48,8 +48,8 @@ const loginUser = async (req, res) => {
         .status(200)
         .cookie("userToken", userToken, {
           secure: "false",
-          sameSite: "strict",
-          httpOnly: true,
+          sameSite: "none",
+          // httpOnly: true,
         })
         .json({
           id: user._id,
