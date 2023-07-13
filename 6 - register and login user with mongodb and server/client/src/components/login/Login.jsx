@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/user";
 import { useGlobalContext } from "../../context/Context";
 
 const Login = () => {
-  const { setUserInfo, userInfo } = useGlobalContext();
+  const { setUserInfo } = useGlobalContext();
   const navigate = useNavigate();
 
   const [toast, setToast] = useState(false);

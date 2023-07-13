@@ -13,7 +13,8 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://loginclienttutorial.vercel.app",
+    // origin: "http://localhost:5173",
+    origin: "https://logintutorial.vercel.app",
   })
 );
 //*mongod db connection
@@ -24,9 +25,9 @@ app.use("/home", async (req, res) => {
 });
 
 app.use("/", require("./routes/user"));
-app.use('/' , (req , res)=> {
- return res.status(200).json("Server Is Run")
-})
+// app.use("/", (req, res) => {
+//   return res.status(200).json("Server Is Run");
+// });
 //*listen
 const port = process.env.PORT || 3010;
 app.listen(port, () => {

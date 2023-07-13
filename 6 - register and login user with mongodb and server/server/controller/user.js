@@ -67,9 +67,10 @@ const loginUser = async (req, res) => {
 const profileUser = async (req, res) => {
   try {
     const { userToken } = req.cookies;
-
-    const user = await jwt.verify(userToken, process.env.JWT_SECRET, {});
-    return res.status(200).json(user);
+    if (userToken) {
+      const user = await jwt.verify(userToken, process.env.JWT_SECRET, {});
+      return res.status(200).json(user);
+    }
   } catch (err) {
     console.log("profile user err", err);
   }

@@ -1,6 +1,9 @@
 import axios from "axios";
 
 const baseUrl = (axios.defaults.baseURL = "https://logintoturial.vercel.app");
+// const baseUrl = (axios.defaults.baseURL = "http://localhost:2023");
+
+
 axios.defaults.withCredentials = true;
 
 //* register api user

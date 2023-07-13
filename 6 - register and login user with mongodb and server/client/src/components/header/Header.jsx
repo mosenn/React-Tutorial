@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../context/Context";
 import { logoutUSer, profileUser } from "../../api/user";
@@ -23,10 +23,15 @@ const Header = () => {
   const logout = async () => {
     //* call api logout function
     const user = await logoutUSer();
-    // localStorage.removeItem("user");
-    console.log('this user is logout' , user);
+    console.log("user", user);
+    if (user.status === 200) {
+      setUserInfo({});
+    }
+    console.log("this user is logout", user);
     // window.location.reload();
   };
+
+  console.log("userInfo in header", userInfo);
   return (
     <div>
       <nav>
