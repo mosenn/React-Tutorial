@@ -24,8 +24,8 @@ app.use("/home", async (req, res) => {
 });
 
 app.use("/", require("./routes/user"));
-app.use('/test' , (req , res)=> {
- return res.status(200).send(<h1>Server Is Run </h1>)
+app.use('/' , (req , res)=> {
+ return res.status(200).json("Server Is Run")
 })
 //*listen
 const port = process.env.PORT || 3010;
