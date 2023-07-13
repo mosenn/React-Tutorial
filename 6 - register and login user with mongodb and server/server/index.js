@@ -13,6 +13,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
+    origin: "https://logintutorial.vercel.app/",
   })
 );
 //*mongod db connection
