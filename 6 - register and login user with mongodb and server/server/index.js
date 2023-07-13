@@ -12,8 +12,8 @@ app.use(cookieParser());
 //*cors
 app.use(
   cors({
+    origin: "https://cllogint.vercel.app",
     credentials: true,
-    origin: "https://logintutorial.vercel.app",
   })
 );
 //*mongod db connection
