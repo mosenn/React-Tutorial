@@ -79,7 +79,15 @@ const profileUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-    return res.cookie("userToken", "").status(200).json("user is logout");
+    return res
+      .cookie("userToken", "", {
+        maxAge: 0,
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
+      .status(200)
+      .json("user is logout");
   } catch (err) {
     console.log("logout controll err", err);
   }
