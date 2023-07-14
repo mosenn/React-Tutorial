@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseUrl = (axios.defaults.baseURL = "http://localhost:2023");
+const baseUrl = (axios.defaults.baseURL = "https://serverlogin.vercel.app");
 
 
 axios.defaults.withCredentials = true;
